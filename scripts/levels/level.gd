@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 
 
 
-func rebuild_cell_map():
+func rebuild_cell_map() -> void:
 	cell_map.clear()
 	var lib: MeshLibrary = grid_builder.mesh_library
 	
@@ -36,7 +36,9 @@ func rebuild_cell_map():
 func get_cell_info(cell_pos: Vector3i) -> Dictionary[Vector3i, Dictionary]:
 	return cell_map.get(cell_pos)
 
-func remove_cell(cell_pos: Vector3i):
+func remove_cell(cell_pos: Vector3i) -> bool:
 	if cell_map.has(cell_pos):
 		cell_map.erase(cell_pos)
 		grid_builder.set_cell_item(cell_pos, -1)
+		return true
+	return false

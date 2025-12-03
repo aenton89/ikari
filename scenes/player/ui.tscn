@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://btpqx8qr07gll"]
+
+[ext_resource type="Script" uid="uid://60kvnasbfpww" path="res://scripts/player/ui/ui.gd" id="1_d0tih"]
+[ext_resource type="Script" uid="uid://bosjap5ae3fke" path="res://scripts/player/ui/ui_timer.gd" id="2_4hxr3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4hxr3"]
+font_size = 48
+
+[node name="UI" type="CanvasLayer" unique_id=1543392667 node_paths=PackedStringArray("timer_ui")]
+script = ExtResource("1_d0tih")
+timer_ui = NodePath("Timer")
+
+[node name="Timer" type="Control" parent="." unique_id=2107694560 node_paths=PackedStringArray("text")]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("2_4hxr3")
+text = NodePath("Label")
+
+[node name="Label" type="Label" parent="Timer" unique_id=955274958]
+layout_mode = 0
+offset_left = -128.0
+offset_right = 128.0
+offset_bottom = 72.0
+pivot_offset = Vector2(128, 0)
+text = "00:00"
+label_settings = SubResource("LabelSettings_4hxr3")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -5,6 +5,7 @@ class_name Main
 
 @export_category("References")
 @export var player: PlayerController
+@export var level_manager: Node3D
 @export var level: Level:
 	set(value):
 		level = value
@@ -24,6 +25,9 @@ func _ready() -> void:
 
 func _on_level_over() -> void:
 	change_level()
+	
+	Global.ui.timer_ui.reset_timer()
+	Global.ui.timer_ui.start_timer()
 
 
 
@@ -41,7 +45,7 @@ func change_level():
 	var new_scene_res = load(next_lvl_path)
 	var new_level = new_scene_res.instantiate()
 	
-	add_child(new_level)
+	level_manager.add_child(new_level)
 	level = new_level
 	
 	if level:

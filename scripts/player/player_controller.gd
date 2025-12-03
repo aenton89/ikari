@@ -40,7 +40,8 @@ func _input(event) -> void:
 			var corrected_local = local_pos - hit.normal * (Global.curr_lvl.grid_builder.cell_size / 2.0)
 			var cell = Global.curr_lvl.grid_builder.local_to_map(corrected_local)
 			
-			Global.curr_lvl.remove_cell(cell)
+			if Global.curr_lvl.remove_cell(cell):
+				camera_controller.screen_shake(0.05, 4)
 	
 	if Input.is_action_just_pressed("view_rotate"):
 		rotating = true

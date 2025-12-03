@@ -5,7 +5,7 @@ class_name CameraController
 
 @export_category("References")
 @export var camera: Camera3D
-@export_category("Values")
+@export_category("Rotation Related")
 @export var tween_length: float = 0.3
 @export var camera_distance: float = 5.0
 @export var mouse_sensitivity: float = 0.3
@@ -19,7 +19,11 @@ var target: Marker3D:
 		target = value
 		global_position = value.global_position
 # tween do obrotu
-var tween: Tween
+var rotate_tween: Tween
+# i tween do
+var shake_tween: Tween
+var is_shaking := false
+var shake_original_pos: Vector3
 
 
 
@@ -28,6 +32,35 @@ func _ready() -> void:
 	rotation_degrees = target_rotation
 
 
+
+func screen_shake(magnitude: float, amount: int) -> void:
+	# jeśli już trwa – reset
+	if is_shaking:
+		shake_tween.kill()
+		camera.position = shake_original_pos
+	
+	is_shaking = true
+	shake_original_pos = camera.position
+	
+	shake_tween = create_tween()
+	shake_tween.set_trans(Tween.TRANS_SINE)
+	shake_tween.set_ease(Tween.EASE_OUT)
+	
+	for i in range(amount):
+		var offset = Vector3(
+			randf_range(-magnitude, magnitude),
+			randf_range(-magnitude, magnitude),
+			0
+		)
+		shake_tween.tween_property(camera, "position", shake_original_pos + offset, 0.03)
+	
+	# powrót do normalnej pozycji
+	shake_tween.tween_property(camera, "position", shake_original_pos, 0.05)
+	
+	# koniec efektu
+	shake_tween.finished.connect(func():
+		is_shaking = false
+	)
 
 func rotate_by_delta(delta: Vector2) -> void:
 	# ruch myszy na rotację (w stopniach)
@@ -75,13 +108,13 @@ func snap_to_grid() -> void:
 	rotation_degrees = current
 	
 	# animacja do snapowanej pozycji
-	if tween and tween.is_running():
-		tween.kill()
+	if rotate_tween and rotate_tween.is_running():
+		rotate_tween.kill()
 	
-	tween = create_tween()
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "rotation_degrees", snapped_rot, tween_length)
+	rotate_tween = create_tween()
+	rotate_tween.set_trans(Tween.TRANS_CUBIC)
+	rotate_tween.set_ease(Tween.EASE_OUT)
+	rotate_tween.tween_property(self, "rotation_degrees", snapped_rot, tween_length)
 	
 	# aktualizowanie targetu na snapowaną wartość
 	target_rotation = snapped_rot
