@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://r2rrlmus32ik"]
+
+[ext_resource type="MeshLibrary" uid="uid://hauv7dpjrnlu" path="res://resources/mesh_lib.tres" id="1_qkxua"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qkxua"]
+
+[node name="Grid Builder" type="GridMap" unique_id=150844603]
+mesh_library = ExtResource("1_qkxua")
+physics_material = SubResource("PhysicsMaterial_qkxua")
+cell_size = Vector3(1, 1, 1)
+metadata/_editor_floor_ = Vector3(0, 0, 0)

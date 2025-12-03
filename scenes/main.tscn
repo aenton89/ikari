@@ -1,33 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://dndghyyanm8qi"]
 
-[ext_resource type="PackedScene" uid="uid://sqbtsx6mugjs" path="res://scenes/world_environment.tscn" id="1_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://cxatgie8gnw3n" path="res://scenes/player_controller.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cfwxbng4uwl5l" path="res://scenes/levels/example_level.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cxatgie8gnw3n" path="res://scenes/player/player_controller.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://vl3pav0n7ale" path="res://scripts/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://caidho2h7xcrt" path="res://scenes/levels/level_1.tscn" id="2_jyhfs"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+[node name="Main" type="Node3D" unique_id=1974602471 node_paths=PackedStringArray("player", "level")]
+script = ExtResource("1_sugp2")
+player = NodePath("Player Controller")
+level = NodePath("Level1")
 
-[sub_resource type="MeshLibrary" id="MeshLibrary_ig7tw"]
-item/0/name = ""
-item/0/mesh = SubResource("BoxMesh_7dm0k")
-item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/0/mesh_cast_shadow = 1
-item/0/shapes = []
-item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/0/navigation_layers = 1
+[node name="Level1" parent="." unique_id=1237935583 instance=ExtResource("2_jyhfs")]
 
-[node name="Main" type="Node3D" unique_id=1974602471]
-
-[node name="WorldEnvironment" parent="." unique_id=1152750507 instance=ExtResource("1_0wfyh")]
+[node name="ExampleLevel" parent="." unique_id=777688442 instance=ExtResource("1_0wfyh")]
+visible = false
 
 [node name="Player Controller" parent="." unique_id=886085401 node_paths=PackedStringArray("rotation_center") instance=ExtResource("1_o5qli")]
 rotation_center = NodePath("../Rotation Center")
 
 [node name="Rotation Center" type="Marker3D" parent="." unique_id=1426570631]
-
-[node name="GridMap" type="GridMap" parent="." unique_id=1783304587]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
-mesh_library = SubResource("MeshLibrary_ig7tw")
-cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(1, 0, 0, 0, 0, 0, 65535, 0, 0, 65536, 0, 851968, -65535, 0, 851968)
-}
-metadata/_editor_floor_ = Vector3(0, -1, 0)

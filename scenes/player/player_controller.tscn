@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxatgie8gnw3n"]
 
-[ext_resource type="Script" uid="uid://blt25xq3327e7" path="res://scripts/player_controller.gd" id="1_d4y06"]
-[ext_resource type="Script" uid="uid://dlpuiywxq5651" path="res://scripts/camera_controller.gd" id="2_6agyq"]
+[ext_resource type="Script" uid="uid://blt25xq3327e7" path="res://scripts/player/player_controller.gd" id="1_d4y06"]
+[ext_resource type="Script" uid="uid://dlpuiywxq5651" path="res://scripts/player/camera_controller.gd" id="2_6agyq"]
 
 [node name="Player Controller" type="Node3D" unique_id=886085401 node_paths=PackedStringArray("camera_controller")]
 script = ExtResource("1_d4y06")

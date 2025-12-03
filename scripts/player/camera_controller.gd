@@ -31,7 +31,7 @@ func _ready() -> void:
 
 func rotate_by_delta(delta: Vector2) -> void:
 	# ruch myszy na rotację (w stopniach)
-	var rotation_delta = Vector3(
+	var rotation_delta: Vector3 = Vector3(
 		-delta.y * mouse_sensitivity,
 		-delta.x * mouse_sensitivity,
 		0
@@ -41,7 +41,8 @@ func rotate_by_delta(delta: Vector2) -> void:
 	target_rotation += rotation_delta
 	
 	# normalizuj obie osie do [-180, 180] - pełna swoboda obrotu
-	for i in [0, 1]:  # X i Y
+	# X i Y
+	for i in [0, 1]:
 		target_rotation[i] = fmod(target_rotation[i], 360.0)
 		if target_rotation[i] > 180:
 			target_rotation[i] -= 360
@@ -53,16 +54,16 @@ func rotate_by_delta(delta: Vector2) -> void:
 
 func snap_to_grid() -> void:
 	# snapuj do najbliższej wielokrotności 90 stopni
-	var snapped = Vector3(
+	var snapped_rot: Vector3 = Vector3(
 		round(target_rotation.x / 90.0) * 90.0,
 		round(target_rotation.y / 90.0) * 90.0,
 		0
 	)
 	
 	# znajdź najkrótszą drogę dla każdej z osi
-	var current = rotation_degrees
+	var current: Vector3 = rotation_degrees
 	for i in [0, 1]:  # X i Y
-		var diff = snapped[i] - current[i]
+		var diff: float = snapped_rot[i] - current[i]
 		
 		# jeśli różnica > 180 stopni, idź w drugą strone - bo obrót się buguje i robi 360
 		if diff > 180:
@@ -80,7 +81,7 @@ func snap_to_grid() -> void:
 	tween = create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "rotation_degrees", snapped, tween_length)
+	tween.tween_property(self, "rotation_degrees", snapped_rot, tween_length)
 	
 	# aktualizowanie targetu na snapowaną wartość
-	target_rotation = snapped
+	target_rotation = snapped_rot
