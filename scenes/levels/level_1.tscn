@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://caidho2h7xcrt"]
+[gd_scene load_steps=4 format=3 uid="uid://cfwxbng4uwl5l"]
 
-[ext_resource type="Script" uid="uid://chr2j1ml17764" path="res://scripts/levels/level.gd" id="1_nsrm0"]
-[ext_resource type="PackedScene" uid="uid://sqbtsx6mugjs" path="res://scenes/enviro/world_environment.tscn" id="2_x42e6"]
-[ext_resource type="PackedScene" uid="uid://r2rrlmus32ik" path="res://scenes/grid/grid_builder.tscn" id="3_6761a"]
+[ext_resource type="Script" uid="uid://8snvxlry3otu" path="res://scripts/levels/level.gd" id="1_2ye1o"]
+[ext_resource type="PackedScene" uid="uid://sqbtsx6mugjs" path="res://scenes/enviro/world_environment.tscn" id="1_p455d"]
+[ext_resource type="PackedScene" uid="uid://r2rrlmus32ik" path="res://scenes/grid/grid_builder.tscn" id="2_lw2oe"]
 
-[node name="Level1" type="Node3D" unique_id=1237935583 node_paths=PackedStringArray("grid_builder")]
-script = ExtResource("1_nsrm0")
+[node name="Example Level" type="Node3D" unique_id=1237935583 node_paths=PackedStringArray("grid_builder")]
+script = ExtResource("1_2ye1o")
 grid_builder = NodePath("Grid Builder")
 
-[node name="WorldEnvironment" parent="." unique_id=1152750507 instance=ExtResource("2_x42e6")]
+[node name="WorldEnvironment" parent="." unique_id=1152750507 instance=ExtResource("1_p455d")]
 
-[node name="Grid Builder" parent="." unique_id=150844603 instance=ExtResource("3_6761a")]
+[node name="Grid Builder" parent="." unique_id=150844603 instance=ExtResource("2_lw2oe")]
 data = {
-"cells": PackedInt32Array(0, 65535, 1, 65536, 65535, 0, 131071, 0, 0, 65535, 0, 1, 0, 0, 1, 65535, 65535, 0, 65536, 0, 1, 131071, 65535, 1)
+"cells": PackedInt32Array(196607, 65535, 1, 131073, 65535, 786433, 65536, 65534, 1, 65536, 65535, 0, 131072, 65535, 0, 65537, 0, 0, 131071, 0, 0, 65536, 0, 1, 65537, 65535, 1, 65537, 65534, 1, 131071, 65535, 0, 131071, 65534, 0, 131073, 65534, 0, 131072, 65534, 0, 196607, 65534, 1, 1, 0, 1, 65535, 65534, 786433, 0, 65534, 786432, 1, 65534, 786432, 0, 0, 786432, 0, 65535, 786433, 65535, 65535, 786433, 65535, 0, 786433, 1, 65535, 786433, 196607, 0, 786433, 131072, 0, 786432, 131073, 0, 786433)
 }
-metadata/_editor_floor_ = Vector3(0, -1, 0)
+metadata/_editor_floor_ = Vector3(0, 2, 0)

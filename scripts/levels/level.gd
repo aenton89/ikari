@@ -27,7 +27,7 @@ func rebuild_cell_map():
 	
 	for cell_pos in grid_builder.get_used_cells():
 		var item_id = grid_builder.get_cell_item(cell_pos)
-		
+		print("cell_pos: ", cell_pos)
 		cell_map[cell_pos] = {
 			"item_id": item_id,
 			"item_name": lib.get_item_name(item_id)
